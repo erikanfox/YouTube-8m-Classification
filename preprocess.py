@@ -48,13 +48,11 @@ def read_records(frames_records):
 
 
 
-def avg_pooling(frame_data,n_frame_sample):
-    # take avaerge of a random samples of the frames for each video
+def avg_pooling(frame_data):
+    # take avaerge across the frames for each video
     avg_rgb_by_vid = list(map(
         lambda frames: 
-        np.array(frames)[
-            np.random.choice(len(frames),size=n_frame_sample)
-            ].mean(axis=0),frame_data))
+        np.array(frames).mean(axis=0),frame_data))
 
     X= np.array(avg_rgb_by_vid)
     return X
@@ -73,14 +71,15 @@ def make_y(labels,top_n_labels):
 
 
 
-def preprocess_for_logistic(feat_rgb,feat_audio,feat_labels,n_frames_to_sample, top_n_labels):
+def preprocess_for_logistic(feat_rgb,feat_audio,feat_labels, top_n_labels):
 
-    X_rgb=avg_pooling(feat_rgb,n_frames_to_sample)
+    X_rgb=avg_pooling(feat_rgb)
     X_rgb_tensor = tf.convert_to_tensor(X_rgb)
-    X_audio =avg_pooling(feat_audio,n_frames_to_sample)
+    X_audio =avg_pooling(feat_audio)
     X_audio_tensor = tf.convert_to_tensor(X_audio)
 
     y = make_y(feat_labels,top_n_labels)
     y_tensor = tf.convert_to_tensor(y)
+   # y_tensor = tf.cast(y_tensor, tf.float32)
 
     return(X_rgb_tensor, X_audio_tensor,y_tensor)
