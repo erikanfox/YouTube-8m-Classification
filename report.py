@@ -51,30 +51,16 @@ def report_performance(label_proba,label_true,verbose = True,thresh_step = 0.01,
 
 ##########################################################################################################
 
-label_dict = pd.read_csv("vocabulary.csv")
+# label_dict = pd.read_csv("vocabulary.csv")
 
-def get_label(label_index,top_n_labels,label_dict,get_names):
-    def get_label_row(row):
-        if type(row)!= np.ndarray:
-            row= np.array(row)
-        labels = label_dict.iloc[row[row<top_n_labels]].Name.values
-        return labels
-    if get_names:
-        all_labels  = list(map(lambda row: get_label_row(row), label_index))
-    else:
-        all_labels  = list(map(np.array,label_index))
-    return all_labels
 
-def make_top_n_pred_df(pesudo_id,y_predproba,feat_labels,top_n_pred = 5,top_n_poplabels = 1000,get_names=False):
+def make_top_n_pred_df(pseudo_id,y_predproba,feat_labels,top_n_pred = 5,top_n_poplabels = 1000,get_names=False):
     top_labels_proba = np.fliplr(np.sort(y_predproba,axis=1))[:,:top_n_pred]
     top_labels_pred = np.fliplr(y_predproba.argsort(axis=1))[:,:top_n_pred]
-    if get_names:
-      label_true = get_label(feat_labels,top_n_poplabels,label_dict,get_names=True)
-      label_pred = get_label(top_labels_pred,top_n_poplabels,label_dict,get_names=True)
-    else:
-      label_true = get_label(feat_labels,top_n_poplabels,label_dict,get_names=False)
-      label_pred = get_label(top_labels_pred,top_n_poplabels,label_dict,get_names=False)
-    predict_df = pd.DataFrame({"pesudo_id":pesudo_id,
+
+    label_true = feat_labels
+    label_pred = top_labels_pred
+    predict_df = pd.DataFrame({"pseudo_id":pseudo_id,
                 "label_true":label_true,
                 "label_pred":label_pred,
                 "predict_proba":top_labels_proba.tolist(),})
