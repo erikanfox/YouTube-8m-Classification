@@ -19,8 +19,8 @@ This project contribute to progress in the video classification space by using t
 1) Clone repo: `git clone https://github.com/erikanfox/YouTube-8m-Classification.git`
 2) Create a pip/conda virtual environment
 3) Install required packages: `pip install -r requirements.txt`
-4) Download data (see information above
-5) Proprocess the data using the following files:
+4) Download data (see information above)
+5) Preprocess/divide the data using the following files:
 
 
 6) Run models using the folling files:
