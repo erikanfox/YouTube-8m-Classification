@@ -7,5 +7,4 @@ wordcloud
 keras
 youtube_dl
 tensorflow_addons
-ast
 multiprocess
