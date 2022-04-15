@@ -3,7 +3,6 @@ sklearn
 matplotlib
 tensorflow
 numpy
-random
 heapq
 numbers
 re
@@ -13,7 +12,6 @@ itertools
 collections
 glob
 time
-multiprocess
 multiprocessing
 keras
 youtube_dl
