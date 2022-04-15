@@ -3,7 +3,7 @@ import tensorflow_addons as tfa
 import tensorflow as tf
 import numpy as np
 import pandas as pd
-
+import os
 
 ##########################################################################################################
 def report_performance(label_proba,label_true,verbose = True,thresh_step = 0.01,thresh=None):
@@ -51,7 +51,8 @@ def report_performance(label_proba,label_true,verbose = True,thresh_step = 0.01,
 
 ##########################################################################################################
 
-label_dict = pd.read_csv("vocabulary.csv")
+path = os.path.abspath(os.path.join(os.getcwd() ,"../"))+"/data/"
+label_dict = pd.read_csv(path+"vocabulary.csv")
 label_map = dict(zip(label_dict.Index, label_dict.Name))
 
 
