@@ -23,5 +23,5 @@ This project contribute to progress in the video classification space by using t
 5) Preprocess/divide the data using the following files:
 
 
-6) Run models using the folling files:
+6) Run models using the following files:
 7) Analyze results using the following files: `metrics.ipynb`, `test_results.ipynb`
