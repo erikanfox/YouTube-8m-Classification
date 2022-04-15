@@ -30,14 +30,18 @@ This project contribute to progress in the video classification space by using t
     This file is required for EDA and modeling
     
 6) Exploratory data analysis,
-    `get_metadata.py` fetches video meta data,
+    `get_metadata.py` fetches video meta data based on the pseudo_id from the originla data
     `EDA.ipynb` displays an exploratory data analysis,
-    `preprocess.py` prepares the data for modeling
     
-6) Run models using the files found in the `modeling` folder: 
-       `frame-level.ipynb` runs our frame-level models,
-        `video-level.ipynb` runs our video-level models
+7) Modeling: 
+- Run models using the files found in the `modeling` folder:
+      video-level.ipynb` runs our video-level models,
+      frame-level.ipynb` runs our frame-level models,
+      These notebooks require funcitons from `preprocess.py` from the `preproces` folder to prerpocess data and  `report.py` to monitor model performance and export prediction report for results analysis.
+ - 
+
+      
     
-7) Analyze results using the files found in the `metrics` folder:
+8) Analyze results using the files found in the `metrics` folder:
      `eval_util.py`, `report.py`, `average_precision_calculator.py` and `mean_average_precision_calculator.py` provide functions to analyze results using `test_results.ipynb`, `metrics.ipynb` generates ROC and precision-recall plots
 
