@@ -7,13 +7,13 @@ This project contribute to progress in the video classification space by using t
 ### Data:
   To get data, follow the instruction at [Youtube8M](https://research.google.com/youtube8m/download.html). Installation of `curl` is required.
   
-  Create seprate folders for train, validation and test data, and download the  tfrecords. 
-  
-  To download 1/100-th of the training data from the US use:<br>
+  Create seprate folders for train, validation and test data, and download the  tfrecords. To download 1/100-th of the training data from the US use:<br>
   `curl data.yt8m.org/download.py | shard=1,100 partition=2/frame/train mirror=us python`. 
   
   To download 1/100-th of the validation data use:<br>
   `curl data.yt8m.org/download.py | partition=2/frame/validate mirror=us python`.
+  
+  For test data: the original  [Youtube8M](https://research.google.com/youtube8m/download.html) test data is unlabeled. We used a few tfrecords from the downloaded validation data, and deleted those from the validation folder.
   
 ### Dependencies:
   see `requirements.txt`
