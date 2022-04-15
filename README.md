@@ -11,7 +11,7 @@ This project contribute to progress in the video classification space by using t
   `curl data.yt8m.org/download.py | shard=1,100 partition=2/frame/train mirror=us python`
   
 ### Dependencies:
-
+  see `requirements.txt`
 
 
 ### User Instructions
