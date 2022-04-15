@@ -4,9 +4,9 @@ matplotlib
 tensorflow
 numpy
 wordcloud
-multiprocessing
 keras
 youtube_dl
 urllib.request
 tensorflow_addons
 ast
+multiprocess
