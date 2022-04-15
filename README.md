@@ -37,11 +37,11 @@ This project contribute to progress in the video classification space by using t
     
 7) Modeling: 
 - Run models use the files found in the `modeling` folder:
-      video-level.ipynb` runs our video-level models,
-      frame-level.ipynb` runs our frame-level models,
+      `video-level.ipynb` runs our video-level models,
+      `frame-level.ipynb` runs our frame-level models,
       These notebooks require funcitons from `preprocess.py` from the `preprocessing` folder to prerpocess data and  `report.py` under the `metric` folder to monitor model performance and export prediction report for results analysis.
  - Model performance use the files found in the `metrics` folder:
-     -   `average_precision_calculator.py`, `eval_util.py, and `mean_average_precision_calculator.py` are borrowed from (youtube-8m Github Repo)[https://github.com/google/youtube-8m] 
+     -   `average_precision_calculator.py`, `eval_util.py`, and `mean_average_precision_calculator.py` are borrowed from (youtube-8m Github Repo)[https://github.com/google/youtube-8m] 
      -  `report.py` uses these python scripts above to calculate gAP, Hit@1, PERR ([BenchMark paper](https://ui.adsabs.harvard.edu/abs/2016arXiv160908675A/abstract)). `report.py` also compute F-1 score and compile prediction results to a dataframe.
 report.py
      - prediction on test data: for each of the three models and three combinations of inputs, test result dataframe is exported into the `data` folder.
