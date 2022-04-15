@@ -5,10 +5,15 @@ This project contribute to progress in the video classification space by using t
 
 
 ### Data:
-  To get data, follow the instruction at [Youtube8M](https://research.google.com/youtube8m/download.html). 
+  To get data, follow the instruction at [Youtube8M](https://research.google.com/youtube8m/download.html). Installation of `curl` is required.
   
-  In 
-  `curl data.yt8m.org/download.py | shard=1,100 partition=2/frame/train mirror=us python`
+  Create seprate folders for train, validation and test data, and download the  tfrecords. 
+  
+  To download 1/100-th of the training data from the US use:<br>
+  `curl data.yt8m.org/download.py | shard=1,100 partition=2/frame/train mirror=us python`. 
+  
+  To download 1/100-th of the validation data use:<br>
+  `curl data.yt8m.org/download.py | partition=2/frame/validate mirror=us python`.
   
 ### Dependencies:
   see `requirements.txt`
@@ -21,6 +26,10 @@ This project contribute to progress in the video classification space by using t
 3) Install required packages: `pip install -r requirements.txt`
 4) Download data (see information above)
 5) Preprocess/divide the data using the files found the `preprocessing` folder:
+    `preprocess.py` prepares the data for modeling
+    This file is required for EDA and modeling
+    
+6) Exploratory data analysis,
     `get_metadata.py` fetches video meta data,
     `EDA.ipynb` displays an exploratory data analysis,
     `preprocess.py` prepares the data for modeling
