@@ -32,7 +32,7 @@ This project contribute to progress in the video classification space by using t
     
 6) Exploratory data analysis uses the files found the folder `EDA`
 
-    `get_metadata.py` fetches video meta data based on the pseudo_id from the originla data
+    `get_metadata.py` fetches video meta data based on the pseudo_id from the original data
     `EDA.ipynb` displays an exploratory data analysis,
     
 7) Modeling: 
