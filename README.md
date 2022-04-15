@@ -23,8 +23,8 @@ This project contribute to progress in the video classification space by using t
 5) Preprocess/divide the data using the files found the `preprocessing` folder
     
 6) Run models using the files found in the `modeling` folder: 
-    `frame-level.ipynb` runs our frame-level models 
-    `video-level.ipynb` runs our video-level models
+    a) `frame-level.ipynb` runs our frame-level models 
+    b) `video-level.ipynb` runs our video-level models
     
 7) Analyze results using the files found in the `metrics` folder:
      `metrics.ipynb` generates ROC and precision-recall plots
