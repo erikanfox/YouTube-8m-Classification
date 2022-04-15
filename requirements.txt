@@ -4,7 +4,6 @@ matplotlib
 tensorflow
 numpy
 wordcloud
-itertools
 collections
 glob
 time
