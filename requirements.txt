@@ -4,8 +4,6 @@ matplotlib
 tensorflow
 numpy
 wordcloud
-glob
-time
 multiprocessing
 keras
 youtube_dl
