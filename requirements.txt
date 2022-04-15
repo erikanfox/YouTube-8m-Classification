@@ -6,7 +6,6 @@ numpy
 wordcloud
 keras
 youtube_dl
-urllib.request
 tensorflow_addons
 ast
 multiprocess
