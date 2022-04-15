@@ -20,8 +20,6 @@ This project contribute to progress in the video classification space by using t
 2) Create a pip/conda virtual environment
 3) Install required packages: `pip install -r requirements.txt`
 4) Download data (see information above)
-5) Preprocess/divide the data using the following files:
-
-
-6) Run models using the following files:
-7) Analyze results using the following files: `metrics.ipynb`, `test_results.ipynb`
+5) Preprocess/divide the data using the files found the `preprocessing folder`
+6) Run models using the files found in the `modeling` folder
+7) Analyze results using the files found in the `metrics` folder
