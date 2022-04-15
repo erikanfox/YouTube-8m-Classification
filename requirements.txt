@@ -3,7 +3,6 @@ sklearn
 matplotlib
 tensorflow
 numpy
-os
 wordcloud
 itertools
 collections
