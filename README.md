@@ -20,12 +20,15 @@ This project contribute to progress in the video classification space by using t
 2) Create a pip/conda virtual environment
 3) Install required packages: `pip install -r requirements.txt`
 4) Download data (see information above)
-5) Preprocess/divide the data using the files found the `preprocessing` folder
+5) Preprocess/divide the data using the files found the `preprocessing` folder:
+    `get_metadata.py` fetches video meta data,
+    `EDA.ipynb` displays an exploratory data analysis,
+    `preprocess.py` prepares the data for modeling
     
 6) Run models using the files found in the `modeling` folder: 
-    a) `frame-level.ipynb` runs our frame-level models 
-    b) `video-level.ipynb` runs our video-level models
+       `frame-level.ipynb` runs our frame-level models,
+        `video-level.ipynb` runs our video-level models
     
 7) Analyze results using the files found in the `metrics` folder:
-     `metrics.ipynb` generates ROC and precision-recall plots
+     `eval_util.py`, `report.py`, `average_precision_calculator.py` and `mean_average_precision_calculator.py` provide functions to analyze results using `test_results.ipynb`, `metrics.ipynb` generates ROC and precision-recall plots
 
