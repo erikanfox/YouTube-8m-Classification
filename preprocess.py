@@ -5,10 +5,21 @@ import re
 import os
 
 """
-This file stores useful functions to preprocess tfrecord
+This file stores useful functions to preprocess tfrecord,
+including 1) get_records: getting all the files under a specified directory
+          2) read_refords: parsing each recrods, getting id, labels,
+                                  (n_frames, 1024) for RGB features,
+                                    (n_frames, 128) fro audio features)
+          3) avg_pooling: average pooling to aggregate input features from frames to video
+          4) make_y: one hot encoding on labels for one-VS-all classifier
+          5) preapre_logistic: using avg_pool, and make_y to prepare the input and output
+                              for training baseline lgostic model
+                              
 """
 
 def get_records(directory, filetype):
+    # tfrecords are stored in file folders, this function
+    # get the names of all the record files under a directory
     r = re.compile("^%s.+\\.tfrecord$"%filetype)
     train_files =  os.listdir(directory)
     frames_records = sorted(list(filter(r.match, train_files)))
@@ -18,6 +29,7 @@ def get_records(directory, filetype):
     return frames_records
 
 def read_records(frames_records):
+    # Parse tfrecords data
     feat_puesdoid = []
     feat_labels = []
     feat_rgb = []
@@ -30,7 +42,7 @@ def read_records(frames_records):
 
             rgb_frame = []
             audio_frame = []
-            # iterate through frames
+            # iterate through frames for audio and rgb features
             for i in range(n_frames):
                 rgb_frame.append(tf.io.decode_raw(
                         tf_seq_example.feature_lists.feature_list["rgb"].feature[i].bytes_list.value[0],
@@ -59,8 +71,9 @@ def avg_pooling(frame_data):
 
 
 def make_y(labels,top_n_labels):
-# get y for one vs all classifier
-# dim: row = # of unique lable, col = number of video *20 frame per video
+    # using a binary indicator for each label to suggest if a video contain each of the top 1000 labels
+    # get y for one vs all classifier
+    # dim: row = # of unique lable, col = number of video *20 frame per video
     unique_labels = np.arange(0,top_n_labels,1)
     if_label_by_label = [[] for i in range(len(unique_labels))]
     for i in range(len(unique_labels)):
@@ -72,7 +85,9 @@ def make_y(labels,top_n_labels):
 
 
 def preprocess_for_logistic(feat_rgb,feat_audio,feat_labels, top_n_labels):
-
+    # call avg_pooling( and make_y to get preprocessed inputs and outputs
+    # for training average-pooling -based model
+    
     X_rgb=avg_pooling(feat_rgb)
     X_rgb_tensor = tf.convert_to_tensor(X_rgb)
     X_audio =avg_pooling(feat_audio)
@@ -80,6 +95,6 @@ def preprocess_for_logistic(feat_rgb,feat_audio,feat_labels, top_n_labels):
 
     y = make_y(feat_labels,top_n_labels)
     y_tensor = tf.convert_to_tensor(y)
-   # y_tensor = tf.cast(y_tensor, tf.float32)
+
 
     return(X_rgb_tensor, X_audio_tensor,y_tensor)

@@ -10,7 +10,7 @@ def report_performance(label_proba,label_true,verbose = True,thresh_step = 0.01,
     if type(label_true)!=np.ndarray:
         label_true = label_true.numpy()
         
-    #three metrics from the paper
+    #three metrics from the main paper
     gAP= eval.calculate_gap(label_proba,label_true)
     PERR = eval.calculate_precision_at_equal_recall_rate(label_proba,label_true)
     HIT1= eval.calculate_hit_at_one(label_proba,label_true)
@@ -51,15 +51,28 @@ def report_performance(label_proba,label_true,verbose = True,thresh_step = 0.01,
 
 ##########################################################################################################
 
-# label_dict = pd.read_csv("vocabulary.csv")
+label_dict = pd.read_csv("vocabulary.csv")
+label_map = dict(zip(label_dict.Index, label_dict.Name))
 
 
 def make_top_n_pred_df(pseudo_id,y_predproba,feat_labels,top_n_pred = 5,top_n_poplabels = 1000,get_names=False):
+    ### sort predicted label based on thier confidence score from to tu bottom, and cut off at 5 labels.
+
+    #sort confidence score
     top_labels_proba = np.fliplr(np.sort(y_predproba,axis=1))[:,:top_n_pred]
+    # sort label based on confidence score
     top_labels_pred = np.fliplr(y_predproba.argsort(axis=1))[:,:top_n_pred]
 
-    label_true = feat_labels
-    label_pred = top_labels_pred
+    # get the names of the labels based on "vocabulary.csv" if get_names is true
+    if get_name:
+        label_true = list(map(np.array,feat_labels))
+        label_true = list(map(lambda row: list(map(label_map.get,row)),label_true))
+        label_pred = list(map(np.array,top_labels_pred))
+        label_pred = list(map(lambda row: list(map(label_map.get,row)),label_pred))
+    else:
+        label_true = list(map(np.array,feat_labels))
+        label_pred = list(map(np.array,top_labels_pred))
+    #return dataframe
     predict_df = pd.DataFrame({"pseudo_id":pseudo_id,
                 "label_true":label_true,
                 "label_pred":label_pred,

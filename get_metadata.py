@@ -21,6 +21,7 @@ def get_video_metadata(pesudo_id):
     try:
         real_id  = get_real_id(pesudo_id)
         url = "https://www.youtube.com/watch?v=" + real_id
+        # call youtube_dl command-line tool to get metadaa
         ydl = youtube_dl.YoutubeDL()
         result = ydl.extract_info(url, download=False)
         fields = [
@@ -38,7 +39,7 @@ def get_video_metadata(pesudo_id):
             "webpage_url",
         ]
         video_metadata = [pesudo_id,real_id]
-        video_metadata.append([result[field] for field in fields])
+        video_metadata = video_metadata + [result[field] for field in fields]
         return video_metadata
     except:
         return [np.nan for i in range(14)]
